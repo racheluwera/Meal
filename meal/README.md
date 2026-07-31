@@ -1,55 +1,67 @@
-# MealApp
+# 🍳 KitchenDesk
 
-> **Eat Smart. Live Better.**
+> **Kitchen operations, simplified.**
 
-MealApp is a modern, full-stack-ready meal planning web application built with **Next.js 16**, **TypeScript**, and **Tailwind CSS**. It helps users discover healthy meals, plan their week, and stay on top of their calorie goals — all from a clean, fast, and accessible interface.
+KitchenDesk is a restaurant kitchen management system built for the people who actually run the kitchen — the **manager** and the **chef**. It tells them exactly what needs to be cooked today, what's running low on stock, what's ready to serve, and what needs urgent attention — all from a single, clean dashboard.
+
+No more shouting across the kitchen. No more missed orders. Just clear, real-time communication between the front desk, the manager, and the cook.
 
 ---
 
-##  Folder Structure
-
-Understanding how the project is organized is the first step to contributing confidently. Here's a breakdown:
+## 📁 Folder Structure
 
 ```
 meal/
-├── app/                        # Next.js App Router — all pages live here
-│   ├── layout.tsx              # Root layout: wraps every page with Navbar + Footer
-│   ├── page.tsx                # Home page — hero, stats, features, featured meals, CTA
-│   ├── globals.css             # Global styles + Tailwind CSS + CSS variables (color theme)
+├── app/                          # Next.js App Router — all pages live here
+│   ├── layout.tsx                # Root layout: wraps every page with Navbar + Footer
+│   ├── page.tsx                  # Dashboard — today's summary, stats, live notifications
+│   ├── globals.css               # Global styles, Tailwind CSS, and color theme variables
 │   ├── meals/
-│   │   └── page.tsx            # /meals — full meal listing page
+│   │   └── page.tsx              # /meals — Today's Menu with dish status and assignments
 │   └── meal-plan/
-│       └── page.tsx            # /meal-plan — weekly meal plan page
+│       └── page.tsx              # /meal-plan — Full Kitchen Notifications board
 │
-├── components/                 # Reusable UI components shared across pages
-│   ├── navbar.tsx              # Top navigation bar with brand + page links
-│   ├── footer.tsx              # Footer with links, socials, and copyright
-│   ├── mealcard.tsx            # Individual meal card (image, name, description, calories)
-│   └── meallist.tsx            # Renders a responsive grid of MealCards
+├── components/                   # Reusable UI components shared across pages
+│   ├── navbar.tsx                # Top navigation: KitchenDesk brand + page links
+│   ├── footer.tsx                # Footer with links and internal-use notice
+│   ├── mealcard.tsx              # Dish card with status badge (Pending/In Progress/Ready)
+│   └── meallist.tsx              # Responsive grid of dish cards
 │
-├── public/                     # Static assets (images, icons, SVGs)
-├── .next/                      # Next.js build output (auto-generated, do not edit)
-├── next.config.ts              # Next.js configuration
-├── tailwind.config.ts          # Tailwind CSS configuration
-├── tsconfig.json               # TypeScript compiler configuration
-└── package.json                # Project dependencies and scripts
+├── public/                       # Static assets
+├── next.config.ts                # Next.js configuration
+├── tailwind.config.ts            # Tailwind CSS configuration
+├── tsconfig.json                 # TypeScript compiler configuration
+└── package.json                  # Project dependencies and scripts
 ```
 
-### Why this structure?
+### How the routing works
 
-The `app/` directory follows the **Next.js App Router** convention — each folder inside `app/` maps directly to a URL route. For example, `app/meals/page.tsx` is automatically served at `/meals`. No manual routing configuration needed.
+The `app/` folder follows the **Next.js App Router** convention. Each subfolder with a `page.tsx` file becomes a live URL automatically:
 
-The `components/` folder holds all reusable UI pieces. The rule is simple: if something appears on more than one page, it belongs in `components/`. This keeps pages lean and focused on layout and data, while components handle the visual building blocks.
+| File                          | URL             | Purpose                          |
+|-------------------------------|-----------------|----------------------------------|
+| `app/page.tsx`                | `/`             | Main dashboard                   |
+| `app/meals/page.tsx`          | `/meals`        | Today's menu with dish statuses  |
+| `app/meal-plan/page.tsx`      | `/meal-plan`    | Kitchen notifications board      |
 
+No manual routing setup needed — Next.js handles it all.
 
-# Clone the repository
-git clone https://github.com/your-username/mealapp.git
-cd mealapp/meal
+---
 
-# Install dependencies
+## 🚀 Getting Started
+
+### Prerequisites
+
+- Node.js 18+
+- npm
+
+### Installation
+
+```bash
+git clone https://github.com/your-username/kitchendesk.git
+cd kitchendesk/meal
+
 npm install
-
-# Start the development server
 npm run dev
 ```
 
@@ -57,98 +69,141 @@ Open [http://localhost:3000](http://localhost:3000) in your browser.
 
 ### Available Scripts
 
-| Command         | Description                        |
-|-----------------|------------------------------------|
-| `npm run dev`   | Start the development server       |
-| `npm run build` | Build the app for production       |
-| `npm run start` | Run the production build           |
-| `npm run lint`  | Run ESLint to check code quality   |
+| Command         | Description                      |
+|-----------------|----------------------------------|
+| `npm run dev`   | Start the development server     |
+| `npm run build` | Build the app for production     |
+| `npm run start` | Run the production build         |
+| `npm run lint`  | Run ESLint to check code quality |
 
 ---
 
-##  Why TypeScript and Not JavaScript?
+## 🧠 Why TypeScript and Not JavaScript?
 
-This is a question worth answering properly, because the choice matters more than people think.
+This is worth explaining properly because the choice has a real impact on a project like this.
 
-JavaScript is flexible — maybe too flexible. You can pass anything to a function, return anything from it, and the language won't complain until something breaks at runtime, often in production, in front of a real user.
+JavaScript is flexible — sometimes too flexible. You can pass anything to a function, forget a required field, or return the wrong type, and the language won't say a word until something breaks in production, in the middle of a busy lunch service.
 
-TypeScript adds a **type system on top of JavaScript**. It's still JavaScript under the hood — it compiles down to plain JS — but during development, it enforces rules about what kind of data your code expects and produces.
+TypeScript adds a **type system on top of JavaScript**. It still compiles down to plain JS, but during development it enforces rules about what kind of data your code expects and produces. Think of it as a second pair of eyes that never gets tired.
 
-Here's a concrete example from this project:
+Here's a real example from this project:
 
 **JavaScript** — no safety:
 ```js
-function MealCard({ name, description, calories, image }) {
-  // What if calories is a string? What if image is undefined?
-  // You won't know until it crashes.
+function MealCard({ name, description, calories, status, assignedTo }) {
+  // What if status is "Cooked" instead of "Ready"?
+  // What if assignedTo is missing? You won't know until it breaks.
 }
 ```
 
 **TypeScript** — explicit contract:
 ```ts
+type Status = "Pending" | "In Progress" | "Ready";
+type Role = "Chef" | "Manager";
+
 type MealCardProps = {
   name: string;
   description: string;
-  calories: number;   // must be a number, always
-  image: string;
+  calories: number;
+  status: Status;       // can ONLY be one of these three values
+  assignedTo: Role;     // can ONLY be "Chef" or "Manager"
 };
-
-function MealCard({ name, description, calories, image }: MealCardProps) {
-  // TypeScript will warn you at compile time if you pass the wrong type
-}
 ```
 
+If someone accidentally passes `status: "Cooked"` or forgets `assignedTo`, TypeScript catches it before the code even runs. In a kitchen management system where the right person needs the right information at the right time, that kind of reliability matters.
 
+### JavaScript vs TypeScript — at a glance
 
-##  Current Features
+| Feature                  | JavaScript        | TypeScript                          |
+|--------------------------|-------------------|-------------------------------------|
+| Type checking            | None (runtime)    | Static (compile time)               |
+| Autocomplete in IDE      | Limited           | Rich and context-aware              |
+| Catching bugs early      | After deployment  | Before you run the code             |
+| Refactoring safety       | Risky             | Confident — the compiler guides you |
+| Self-documenting code    | Harder to read    | Types tell you exactly what's expected |
+| Team collaboration       | Easy to misuse    | Enforced consistency across the team |
 
-- **Home Page** — Hero section, stats bar, feature highlights, featured meal preview, and a call-to-action
-- **Meals Page** — Full responsive grid of meal cards with image, name, description, and calorie count
-- **Meal Plan Page** — Placeholder page ready for weekly planning functionality
-- **Navbar** — Responsive top navigation with brand logo and page links
-- **Footer** — Links, social media, tagline, and dynamic copyright year
-- **Dark Mode** — Full dark mode support via Tailwind CSS dark variant
-- **Green Theme** — Consistent health-focused green color palette across all pages
-- **TypeScript** — Fully typed components and props throughout the codebase
-- **Responsive Design** — Mobile-first layout that adapts from 1 to 3 columns
+The short version: **JavaScript lets you move fast. TypeScript lets you move fast without breaking things** — especially important when the "things" are kitchen operations that affect real orders and real customers.
 
 ---
 
-## 🗺️ Roadmap — Features We Want to Add
+## ✅ Current Features
 
-These are the features planned for future development, roughly in priority order:
+- **Dashboard** — Morning greeting, today's date, live stats (orders, cooking, ready, pending), today's menu summary, and live notification preview
+- **Today's Menu** — Full dish list with status badges (⏳ Pending / 🔥 In Progress / ✅ Ready), assigned role (Chef / Manager), and a status summary bar
+- **Kitchen Notifications** — Separate notification boards for Chef and Manager with categories: Cook Now 🔥, Stock Alert ⚠️, Ready ✅, Info 📋 — urgent alerts highlighted in red/yellow
+- **Navbar** — KitchenDesk brand with links to Dashboard, Today's Menu, and Notifications
+- **Footer** — Internal-use notice, quick links, and dynamic copyright year
+- **Dark Mode** — Full dark mode support across all pages and components
+- **Orange Theme** — Warm, kitchen-appropriate color palette throughout
+- **TypeScript** — Fully typed components, props, and data throughout the codebase
+- **Responsive Design** — Works on tablets and desktops used in restaurant environments
+
+---
+
+## 🗺️ Roadmap — Features to Add
 
 ### 🔜 Coming Soon
 
-- [ ] **Meal Detail Page** — Click on a meal card to see full ingredients, prep time, macros (protein, carbs, fat), and step-by-step instructions
-- [ ] **Search & Filter** — Filter meals by calorie range, meal type (breakfast, lunch, dinner), or dietary preference (vegan, gluten-free, high-protein)
-- [ ] **Weekly Meal Planner** — Drag-and-drop interface to assign meals to each day of the week
-- [ ] **Calorie Tracker** — Daily calorie summary that updates as you add meals to your plan
-- [ ] **Favorites** — Save meals to a personal favorites list stored in localStorage
+- [ ] **Mark Dish as Ready** — Chef clicks a button on a dish card to update its status to "Ready" in real time
+- [ ] **Dismiss Notifications** — Mark notifications as read/resolved so the board stays clean
+- [ ] **Order Count per Dish** — Show how many orders are waiting for each dish on the menu
+- [ ] **Urgent Alert Banner** — A top-of-page banner that flashes when a critical notification comes in (e.g., stock running out)
+- [ ] **Print Today's Menu** — One-click print view of the day's dishes for the kitchen board
 
-### Future Ideas
+### 🔮 Future Ideas
 
-- [ ] **User Authentication** — Sign up / log in with email or Google (NextAuth.js)
-- [ ] **Personal Dashboard** — Track weekly calorie history, most eaten meals, and nutrition trends
-- [ ] **Custom Meal Creation** — Add your own meals with a form (name, image URL, calories, ingredients)
-- [ ] **Meal Categories** — Organize meals by tags like Breakfast, Lunch, Dinner, Snack, Dessert
-- [ ] **Shopping List Generator** — Auto-generate a grocery list from your weekly meal plan
-- [ ] **API Integration** — Connect to a real nutrition API (e.g., Edamam, Spoonacular) for live meal data
-- [ ] **Notifications / Reminders** — Browser notifications to remind you to log meals
-- [ ] **PWA Support** — Make the app installable on mobile as a Progressive Web App
-- [ ] **Internationalization (i18n)** — Support multiple languages
+- [ ] **Real-Time Updates** — Use WebSockets or Server-Sent Events so notifications update live without refreshing the page
+- [ ] **Role-Based Login** — Separate login for Manager and Chef so each only sees what's relevant to them
+- [ ] **Order Management** — Accept incoming orders from the front desk and automatically push cook notifications to the kitchen
+- [ ] **Stock / Inventory Tracker** — Track ingredient quantities and auto-alert the manager when something is running low
+- [ ] **Shift Scheduling** — Assign staff to shifts and notify them of their duties for the day
+- [ ] **Daily Report** — End-of-day summary: total dishes cooked, orders served, stock used, and alerts triggered
+- [ ] **Mobile App (PWA)** — Install KitchenDesk on a tablet or phone as a Progressive Web App for use in the kitchen
+- [ ] **Multi-Restaurant Support** — Support multiple branches under one account, each with their own kitchen dashboard
+- [ ] **SMS / Email Notifications** — Send urgent alerts to the manager's phone via SMS when stock is critically low
 
 ---
 
-##  Tech Stack
+## 🛠️ Tech Stack
 
-| Technology       | Purpose                                      |
-|------------------|----------------------------------------------|
-| Next.js 16       | React framework with App Router and SSR      |
-| React 19         | UI component library                         |
-| TypeScript 5     | Type-safe JavaScript                         |
-| Tailwind CSS 4   | Utility-first CSS styling                    |
-| Geist Font       | Clean, modern typography by Vercel           |
+| Technology       | Purpose                                          |
+|------------------|--------------------------------------------------|
+| Next.js 16       | React framework with App Router and file-based routing |
+| React 19         | UI component library                             |
+| TypeScript 5     | Type-safe JavaScript for reliable, maintainable code |
+| Tailwind CSS 4   | Utility-first CSS for fast, consistent styling   |
+| Geist Font       | Clean, modern typography by Vercel               |
 
+---
 
+## 👥 Who Is This For?
 
+KitchenDesk is built for **restaurant internal use**. The two primary users are:
+
+- **The Manager** — Needs to know what's on the menu today, what stock is running low, and what needs to be confirmed or actioned before service starts.
+- **The Chef / Cook** — Needs to know what to cook right now, what's been ordered, and when to notify the serving staff that a dish is ready.
+
+The goal is to replace verbal communication and paper notes with a fast, reliable digital board that both roles can check at a glance.
+
+---
+
+## 🤝 Contributing
+
+1. Fork the repository
+2. Create a branch: `git checkout -b feature/your-feature`
+3. Commit your changes: `git commit -m "Add your feature"`
+4. Push: `git push origin feature/your-feature`
+5. Open a Pull Request
+
+Keep code consistent with the existing TypeScript patterns and Tailwind styling.
+
+---
+
+## 📄 License
+
+This project is open source and available under the [MIT License](LICENSE).
+
+---
+
+<p align="center">Built with 🧡 for the people who keep the kitchen running.</p>

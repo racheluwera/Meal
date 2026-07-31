@@ -1,17 +1,8 @@
 import Link from "next/link";
 import MealCard from "@/components/mealcard";
 
-const features = [
-  { icon: "🥗", title: "Browse Meals", description: "Explore a variety of healthy meals with calories and ingredients." },
-  { icon: "📅", title: "Plan Your Week", description: "Organize your meals for the week and stay on track with your goals." },
-  { icon: "🔥", title: "Track Calories", description: "Keep an eye on your daily calorie intake with every meal you add." },
-];
 
-const stats = [
-  { value: "50+", label: "Healthy Meals" },
-  { value: "7", label: "Days Planned" },
-  { value: "100%", label: "Nutrition Focused" },
-];
+
 
 const featuredMeals = [
   {
@@ -67,7 +58,7 @@ export default function Home() {
       </section>
 
       {/* Stats */}
-      <section className="bg-green-700 dark:bg-green-900 px-4 py-10">
+      {/* <section className="bg-green-700 dark:bg-green-900 px-4 py-10">
         <div className="max-w-5xl mx-auto grid grid-cols-3 divide-x divide-green-600 dark:divide-green-800">
           {stats.map(({ value, label }) => (
             <div key={label} className="flex flex-col items-center gap-1 px-4">
@@ -75,11 +66,11 @@ export default function Home() {
               <span className="text-xs text-green-200 uppercase tracking-wide">{label}</span>
             </div>
           ))}
-        </div>
-      </section>
+        </div> */}
+      {/* </section>
 
       {/* Features */}
-      <section className="bg-green-50 dark:bg-green-950 px-4 py-16">
+      {/* <section className="bg-green-50 dark:bg-green-950 px-4 py-16">
         <div className="max-w-5xl mx-auto">
           <h2 className="text-2xl font-bold text-green-900 dark:text-green-50 text-center mb-10">
             Everything you need
@@ -97,7 +88,7 @@ export default function Home() {
             ))}
           </div>
         </div>
-      </section>
+      </section> */} 
 
       {/* Featured Meals */}
       <section className="bg-white dark:bg-green-950 px-4 py-16">
