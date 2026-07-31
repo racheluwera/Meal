@@ -15,7 +15,7 @@ export default function MealCard({ name, description, calories, image }: MealCar
         <h2 className="text-lg font-semibold text-green-900 dark:text-green-50">{name}</h2>
         <p className="text-sm text-green-600 dark:text-green-400">{description}</p>
         <span className="text-sm font-medium text-green-700 dark:text-green-300 bg-green-50 dark:bg-green-900 px-2 py-0.5 rounded-full w-fit">
-          🔥 {calories} kcal
+           {calories} kcal
         </span>
       </div>
     </div>

@@ -34,7 +34,7 @@ export default function Home() {
 
       {/* Hero */}
       <section className="flex flex-col items-center justify-center text-center px-4 py-24 bg-white dark:bg-green-950">
-        <span className="text-5xl mb-4">🍽️</span>
+        <span className="text-5xl mb-4"></span>
         <h1 className="text-4xl font-bold text-green-900 dark:text-green-50 max-w-xl leading-tight">
           Eat Smart. Live Better.
         </h1>

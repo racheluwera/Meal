@@ -15,7 +15,7 @@ export default function Footer() {
     <footer className="w-full border-t border-green-200 bg-white dark:bg-green-950 dark:border-green-900 mt-auto">
       <div className="max-w-5xl mx-auto px-4 py-8 flex flex-col sm:flex-row items-center justify-between gap-6">
         <div className="flex flex-col items-center sm:items-start gap-1">
-          <span className="font-bold text-green-700 dark:text-green-400 text-base">🌿 MealApp</span>
+          <span className="font-bold text-green-700 dark:text-green-400 text-base"> MealApp</span>
           <span className="text-xs text-green-500 dark:text-green-600">Eat well. Feel great.</span>
         </div>
 
