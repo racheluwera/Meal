@@ -1,10 +1,10 @@
 type MealCardProps ={
     name: string;
     description: string;
-    caloies: number;
+    calories: number;
     image: string;
 };
-export default function MealCard({ name, description, caloies, image }: MealCardProps){
+export default function MealCard({ name, description, calories, image }: MealCardProps){
     return(
    <div className="rounded-2xl border border-zinc-200 bg-white shadow-sm overflow-hidden dark:bg-zinc-900 dark:border-zinc-700">
       {image && (
