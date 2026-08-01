@@ -1,14 +1,13 @@
-# 🍳 KitchenDesk
+# Meal planner
 
-> **Kitchen operations, simplified.**
 
-KitchenDesk is a restaurant kitchen management system built for the people who actually run the kitchen — the **manager** and the **chef**. It tells them exactly what needs to be cooked today, what's running low on stock, what's ready to serve, and what needs urgent attention — all from a single, clean dashboard.
+Meal planner is a restaurant kitchen management system built for the people who actually run the kitchen — the **manager** and the **chef**. It tells them exactly what needs to be cooked today, what's running low on stock, what's ready to serve, and what needs urgent attention — all from a single, clean dashboard.
 
 No more shouting across the kitchen. No more missed orders. Just clear, real-time communication between the front desk, the manager, and the cook.
 
 ---
 
-## 📁 Folder Structure
+##  Folder Structure
 
 ```
 meal/
@@ -48,7 +47,6 @@ No manual routing setup needed — Next.js handles it all.
 
 ---
 
-## 🚀 Getting Started
 
 ### Prerequisites
 
@@ -78,7 +76,7 @@ Open [http://localhost:3000](http://localhost:3000) in your browser.
 
 ---
 
-## 🧠 Why TypeScript and Not JavaScript?
+## Why TypeScript and Not JavaScript?
 
 This is worth explaining properly because the choice has a real impact on a project like this.
 
@@ -112,26 +110,13 @@ type MealCardProps = {
 
 If someone accidentally passes `status: "Cooked"` or forgets `assignedTo`, TypeScript catches it before the code even runs. In a kitchen management system where the right person needs the right information at the right time, that kind of reliability matters.
 
-### JavaScript vs TypeScript — at a glance
 
-| Feature                  | JavaScript        | TypeScript                          |
-|--------------------------|-------------------|-------------------------------------|
-| Type checking            | None (runtime)    | Static (compile time)               |
-| Autocomplete in IDE      | Limited           | Rich and context-aware              |
-| Catching bugs early      | After deployment  | Before you run the code             |
-| Refactoring safety       | Risky             | Confident — the compiler guides you |
-| Self-documenting code    | Harder to read    | Types tell you exactly what's expected |
-| Team collaboration       | Easy to misuse    | Enforced consistency across the team |
 
-The short version: **JavaScript lets you move fast. TypeScript lets you move fast without breaking things** — especially important when the "things" are kitchen operations that affect real orders and real customers.
-
----
-
-## ✅ Current Features
+##  Current Features
 
 - **Dashboard** — Morning greeting, today's date, live stats (orders, cooking, ready, pending), today's menu summary, and live notification preview
-- **Today's Menu** — Full dish list with status badges (⏳ Pending / 🔥 In Progress / ✅ Ready), assigned role (Chef / Manager), and a status summary bar
-- **Kitchen Notifications** — Separate notification boards for Chef and Manager with categories: Cook Now 🔥, Stock Alert ⚠️, Ready ✅, Info 📋 — urgent alerts highlighted in red/yellow
+- **Today's Menu** — Full dish list with status badges ( Pending / In Progress /  Ready), assigned role (Chef / Manager), and a status summary bar
+- **Kitchen Notifications** — Separate notification boards for Chef and Manager with categories: Cook Now , Stock Alert , Ready , Info — urgent alerts highlighted in red/yellow
 - **Navbar** — KitchenDesk brand with links to Dashboard, Today's Menu, and Notifications
 - **Footer** — Internal-use notice, quick links, and dynamic copyright year
 - **Dark Mode** — Full dark mode support across all pages and components
@@ -141,9 +126,9 @@ The short version: **JavaScript lets you move fast. TypeScript lets you move fas
 
 ---
 
-## 🗺️ Roadmap — Features to Add
+##  Roadmap — Features to Add
 
-### 🔜 Coming Soon
+### Coming Soon
 
 - [ ] **Mark Dish as Ready** — Chef clicks a button on a dish card to update its status to "Ready" in real time
 - [ ] **Dismiss Notifications** — Mark notifications as read/resolved so the board stays clean
@@ -151,7 +136,7 @@ The short version: **JavaScript lets you move fast. TypeScript lets you move fas
 - [ ] **Urgent Alert Banner** — A top-of-page banner that flashes when a critical notification comes in (e.g., stock running out)
 - [ ] **Print Today's Menu** — One-click print view of the day's dishes for the kitchen board
 
-### 🔮 Future Ideas
+###  Future Ideas
 
 - [ ] **Real-Time Updates** — Use WebSockets or Server-Sent Events so notifications update live without refreshing the page
 - [ ] **Role-Based Login** — Separate login for Manager and Chef so each only sees what's relevant to them
@@ -165,7 +150,7 @@ The short version: **JavaScript lets you move fast. TypeScript lets you move fas
 
 ---
 
-## 🛠️ Tech Stack
+##  Tech Stack
 
 | Technology       | Purpose                                          |
 |------------------|--------------------------------------------------|
@@ -173,37 +158,16 @@ The short version: **JavaScript lets you move fast. TypeScript lets you move fas
 | React 19         | UI component library                             |
 | TypeScript 5     | Type-safe JavaScript for reliable, maintainable code |
 | Tailwind CSS 4   | Utility-first CSS for fast, consistent styling   |
-| Geist Font       | Clean, modern typography by Vercel               |
 
 ---
 
-## 👥 Who Is This For?
+##  Who Is This For?
 
-KitchenDesk is built for **restaurant internal use**. The two primary users are:
+Meal planner is built for **restaurant internal use**. The two primary users are:
 
 - **The Manager** — Needs to know what's on the menu today, what stock is running low, and what needs to be confirmed or actioned before service starts.
 - **The Chef / Cook** — Needs to know what to cook right now, what's been ordered, and when to notify the serving staff that a dish is ready.
 
 The goal is to replace verbal communication and paper notes with a fast, reliable digital board that both roles can check at a glance.
 
----
 
-## 🤝 Contributing
-
-1. Fork the repository
-2. Create a branch: `git checkout -b feature/your-feature`
-3. Commit your changes: `git commit -m "Add your feature"`
-4. Push: `git push origin feature/your-feature`
-5. Open a Pull Request
-
-Keep code consistent with the existing TypeScript patterns and Tailwind styling.
-
----
-
-## 📄 License
-
-This project is open source and available under the [MIT License](LICENSE).
-
----
-
-<p align="center">Built with 🧡 for the people who keep the kitchen running.</p>
