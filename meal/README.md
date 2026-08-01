@@ -161,7 +161,7 @@ If someone accidentally passes `status: "Cooked"` or forgets `assignedTo`, TypeS
 
 ---
 
-## 👥 Who Is This For?
+##  Who Is This For?
 
 Meal planner is built for **restaurant internal use**. The two primary users are:
 
